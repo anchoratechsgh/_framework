@@ -1,0 +1,55 @@
+<?php $__ = new Sprache();
+
+/*
+*@name Sprache()
+*@desc this is a class to make tranlation easy
+*@param $wortlaut => text to be translated into <français>
+*@author Anchora Technologies
+*/
+
+class Sprache{
+	
+	public static function __($wortlaut){
+		$wortlaut = strtolower($wortlaut);
+		$français = array(
+		
+			'director'=>'Directeur',
+			'home'=>'Accueil',
+			
+			# SIGN IN
+			'sign in'=>'Se connecter',
+			'username'=>'Pseudo',
+			'password'=>'Mot de passe',
+			'enter code'=>'Entrer le code',
+			'you are now logged out'=>'Vous êtes maintenant déconnecté',
+			'welcome'=>'Bienvenue',
+			
+			# DASHBOARD
+			'dashboard'=>'Tableu de bord',
+			'total occupants'=>'occupants au total',
+			'total retirements'=>'Retraites totales',
+			'pending applicants'=>'Candidats en attente',
+			'time on site'=>'temps sur le site',
+			'overview of the system'=>'Vue d\'ensemble du système',
+			
+			'from'=>'Du',
+			'to'=>'Au',
+			'pending'=>'En attente',
+			'approved'=>'Approuvé(e)',
+			'rejected'=>'Rejeté(e)',
+			'all types'=>'Tous les types',
+			''=>'',
+			''=>'',
+			''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',
+			''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',''=>'',
+		);
+		
+		if(array_key_exists($wortlaut,$français)){
+			return $français[$wortlaut];
+		}else{
+			return ucfirst($wortlaut);
+		}
+		
+	}#end
+	
+}#endClass
