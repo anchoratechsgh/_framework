@@ -2,13 +2,39 @@
 final class SQL
 {
 
-	public static function query($query, $params=array()){
+	private static function rows($data=[], $fetch='rows'){
+		global $sql; $rows = [];
+		switch($fetch) {
+			case 'row':
+				foreach($data as $k => $r) {
+					if(is_numeric($k) == false) {
+						$rows[$k] = $r;
+					}
+				}
+			break;
+			default:
+				foreach($data as $rw) {
+					$row = [];
+					foreach($rw as $k => $r) {
+						if(is_numeric($k) == false) {
+							$row[$k] = $r;
+						}
+					}
+				}
+				$rows[] = $row;
+			break;
+		}
+		return $rows;
+	}#end
+
+
+	public static function query($query, $params=[]){
 		global $sql;
 		return $sql->Execute($sql->Prepare($query), $params);
 	}#end
 
 
-	public static function select($query, $params=array(), $fetch='rows'){
+	public static function select($query, $params=[], $fetch='rows'){
 		global $sql;
 		$stmt = $sql->Execute($sql->Prepare($query), $params);
 		if($stmt == false){
@@ -17,23 +43,23 @@ final class SQL
 			if($stmt->RecordCount() > 0){
 				switch($fetch){
 					case 'rows':
-						return $stmt->GetRows();
+						return self::rows($stmt->GetRows());
 					break;
 					case 'row':
-						return $stmt->FetchRow();
+						return self::rows($stmt->FetchRow(), 'row');
 					break;
 				}
 			}else{
-				return array();
+				return [];
 			}
 		}
 	}#end
 
 
-	public static function insert($data=array(), $table){
+	public static function insert($data=[], $table){
 		global $sql;
-		$fields = array();
-		$values = array();
+		$fields = [];
+		$values = [];
 		if(is_array($data) == true){
 			foreach($data as $field => $value){
 				$fields[] = $field;
@@ -49,10 +75,10 @@ final class SQL
 	}#end
 
 
-	public static function update($data=array(), $table, $where=array(), $ignore=FALSE){
+	public static function update($data=[], $table, $where=[], $ignore=FALSE){
 		global $sql;
-		$updates = array();
-		$wheres  = array();
+		$updates = [];
+		$wheres  = [];
 		if(is_array($data) == true && is_array($where) == true){
 			foreach($data as $field => $value){
 				$values[]  = $value;
@@ -64,7 +90,7 @@ final class SQL
 			}
 			$updates = implode(',', $updates);
 			$wheres  = implode('AND ', $wheres);
-			$values  = $ignore==FALSE ? $values : array();
+			$values  = $ignore==FALSE ? $values : [];
 			$query	 = 'UPDATE `'.$table.'` SET '.$updates.' WHERE '.$wheres;
 			//echo($query).'<br/>'; die();
 			return $sql->Execute($sql->Prepare($query), $values);
@@ -72,9 +98,9 @@ final class SQL
 	}
 
 
-	public static function delete($where=array(), $table, $dtype='WHERE'){
+	public static function delete($where=[], $table, $dtype='WHERE'){
 		global $sql;
-		$wheres = array();
+		$wheres = [];
 		if(is_array($where) == true){
 			if($dtype == 'IN'){
 				foreach($where as $field => $value){

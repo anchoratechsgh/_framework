@@ -42,7 +42,9 @@ $a = 1; $b = 1; $c = 1; $d = 1; $e = 1; $f = 1; $g = 1; $h = 1; $i = 1; $j = 1; 
 
 # REQUEST KEEPER
 if($_REQUEST){
+	$prohibited = array('<script>','</script>','<style>','</style>');
 	foreach($_REQUEST as $key => $value){
+		$value = str_ireplace($prohibited, '', $value);
 		$$key = @htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
 		$$key = $value;
 	}
