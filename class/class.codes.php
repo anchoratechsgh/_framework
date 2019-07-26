@@ -138,7 +138,7 @@ final class genCode
 		global $sql;
 		$stmt = $sql->Execute($sql->Prepare("SELECT $field FROM `$table` WHERE $field LIKE '$code%' ORDER BY $field DESC LIMIT 1"));
 		if($stmt->RecordCount() == 1){
-			$obj = $stmt->FetchRow();
+			$row = $stmt->FetchRow();
 			$order = substr($row[$field], strlen($code), 100);
 			$order = $order + 1;
 			if(strlen($order) == 1){
@@ -171,7 +171,7 @@ final class genCode
 		global $sql;
 		$stmt = $sql->Execute($sql->Prepare("SELECT $field FROM `$table` WHERE $field LIKE '$code%' ORDER BY $field DESC LIMIT 1"));
 		if($stmt->RecordCount() == 1){
-			$obj = $stmt->FetchRow();
+			$row = $stmt->FetchRow();
 			$order = substr($row[$field], strlen($code), 100);
 			$order = $order + 1;
 			$orderno = $code.$order;

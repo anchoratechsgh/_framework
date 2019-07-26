@@ -20,8 +20,8 @@ final class SQL
 							$row[$k] = $r;
 						}
 					}
+					$rows[] = $row;
 				}
-				$rows[] = $row;
 			break;
 		}
 		return $rows;
