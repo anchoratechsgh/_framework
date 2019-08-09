@@ -1,5 +1,4 @@
 <?php
-
 # HEADERS
 header('Content-Type: text/html; charset=utf-8');
 header('Expires: 0');

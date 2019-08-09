@@ -183,7 +183,7 @@ final class CHtml
 	}
 
 	public static function printFrame($path, $id='printframe', $height=700){
-		return '<iframe allowtransparency="1" frameborder="0" src="'.$path.'" id="'.$id.'" name="'.$id.'" style="border-radius:4px;width:100%; height:'.$height.'px; border:1px #000000 solid; padding:20px 0px 30px 10px;"></iframe>';
+		return '<iframe allowtransparency="1" frameborder="0" src="'.$path.'" id="'.$id.'" name="'.$id.'" style="border-radius:4px;width:100%; height:'.$height.'px; border:1px #000000 solid; padding:20px 10px 30px 10px;"></iframe>';
 	}
 
 	public static function print_r($data=array(), $die='yes'){
