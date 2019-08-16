@@ -152,7 +152,7 @@ function cPost($url='/', $params=[], $engine='curl', $decode='json'){
 		break;
 		case 'json':
 			$ch = curl_init();
-			$headers = array('Content-Type: application/json',  'Authorization: Basic: '.$apiToken, 'Origin: '.WEB, 'Referer: '.REFERER);
+			$headers = array('Content-Type: application/json',  $apiToken, 'Origin: '.WEB, 'Referer: '.REFERER);
 			$params = array_merge($params, array('ADDR'=>ADDR, 'AGENT'=>AGENT, 'REFERER'=>REFERER));
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_POST, true);
