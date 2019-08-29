@@ -197,6 +197,16 @@ final class CHtml
 		if($die == 'yes'){ die(); }
 	}
 
+	public static function requiredList($list=[]) {
+			$empty = [];
+			foreach($list as $var => $val){
+					if(empty($val)) {
+							$empty[] = '`'.$var.'`';
+					}
+			}
+			return count($empty) > 0?implode(', ', $empty):false;
+	}
+
 
 	public static function font_awesome() {
 		return array(

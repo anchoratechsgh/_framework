@@ -69,6 +69,7 @@ require_once dirname(__FILE__).DS.'plugins'.DS.'barcode'.DS.'barcode.php';
 require_once dirname(__FILE__).DS.'plugins'.DS.'mobile_detect'.DS.'Mobile_Detect.php';
 require_once dirname(__FILE__).DS.'plugins'.DS.'getid3'.DS.'getid3.php';
 require_once dirname(__FILE__).DS.'plugins'.DS.'libphonenumber'.DS.'PhoneNumberUtil.php';
+require_once dirname(__FILE__).DS.'plugins'.DS.'class_upload'.DS.'class.upload.php';
 
 require_once dirname(__FILE__).DS.'class'.DS.'class.session.php';
 require_once dirname(__FILE__).DS.'class'.DS.'class.cookie.php';
@@ -76,7 +77,6 @@ require_once dirname(__FILE__).DS.'class'.DS.'class.engine.php';
 require_once dirname(__FILE__).DS.'class'.DS.'class.db.php';
 require_once dirname(__FILE__).DS.'class'.DS.'class.sql.php';
 require_once dirname(__FILE__).DS.'class'.DS.'class.pagination.php';
-require_once dirname(__FILE__).DS.'class'.DS.'class.upload.php';
 require_once dirname(__FILE__).DS.'class'.DS.'class.permalinks.php';
 require_once dirname(__FILE__).DS.'class'.DS.'class.codes.php';
 require_once dirname(__FILE__).DS.'class'.DS.'class.encryptAES.php';

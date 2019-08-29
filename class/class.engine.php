@@ -484,16 +484,6 @@ class Engine
       return '';
     }#end
 
-		public static function requiredList($list=[]) {
-        $empty = [];
-        foreach($list as $var => $val){
-            if(empty($val)) {
-                $empty[] = $var;
-            }
-        }
-        return count($empty) > 0?implode(', ', $empty):false;
-    }
-
 		public static function get_filesize($bytes, $decimals=2) {
 			$sz = 'BKMGTP';
 			$factor = floor((strlen($bytes) - 1) / 3);
