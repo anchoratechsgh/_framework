@@ -100,7 +100,7 @@ function uploadNoResize($mfile, $destination, $name='', $overwrite=false, $water
 			if($foo->processed){
 				$output[] = $foo->file_dst_name;
 			}else{
-				$output = false;
+				$output = $foo->error;
 			}
 		}
 	}

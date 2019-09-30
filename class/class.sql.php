@@ -62,7 +62,7 @@ final class SQL
 		$values = [];
 		if(is_array($data) == true){
 			foreach($data as $field => $value){
-				$fields[] = $field;
+				$fields[] = '`'.$field.'`';
 				$values[] = $value;
 				$params[] = $sql->Param('I');
 			}
@@ -82,15 +82,15 @@ final class SQL
 		if(is_array($data) == true && is_array($where) == true){
 			foreach($data as $field => $value){
 				$values[]  = $value;
-				$updates[] = $ignore==FALSE ? $field.'=? ' : $field.'='.$value.' ';
+				$updates[] = $ignore==FALSE ? '`'.$field.'` = ? ' : '`'.$field.'` = '.$value.' ';
 			}
 			foreach($where as $field => $value){
 				$values[] = $value;
-				$wheres[] = $ignore==FALSE ? $field.'=? ': $field.'='.$value.' ';
+				$wheres[] = $ignore==FALSE ? '`'.$field.'` = ? ': '`'.$field.'` = '.$value.' ';
 			}
 			$updates = implode(',', $updates);
 			$wheres  = implode('AND ', $wheres);
-			$values  = $ignore==FALSE ? $values : [];
+			$values  = $ignore == FALSE ? $values : [];
 			$query	 = 'UPDATE `'.$table.'` SET '.$updates.' WHERE '.$wheres;
 			//echo($query).'<br/>'; die();
 			return $sql->Execute($sql->Prepare($query), $values);
