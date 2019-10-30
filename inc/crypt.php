@@ -39,7 +39,7 @@ class pCrypt
         $crypttext = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, self::__skey(), $text, MCRYPT_MODE_ECB, $iv);
         return trim(self::safe_b64encode($crypttext));
     }#end
- 
+
 
     public static function decode($string){
         if(!$string){ return false; }
@@ -74,14 +74,14 @@ class pCrypt
   		$decoded = unserialize($decoded);
       return $decoded;
   }#end
-    
-    
+
+
   public static function openssl_encrypt($string){
       $iv = substr(hash('sha256', PEPPER), 0, 16);
       $encoded = openssl_encrypt($string, 'AES-256-CBC', PEPPER, 0, $iv);
       return base64_encode($encoded);
   }#end
-    
+
   public static function openssl_decrypt($string){
       $iv = substr(hash('sha256', PEPPER), 0, 16);
       $string = base64_decode($string);

@@ -171,9 +171,13 @@ class Engine
 	*@param: $y => number total
 	*/
 	public static function calcPercentDone($x, $y){
-		$a = $x / $y;
-		$a = $a * 100;
-		return $a;
+		if($y) {
+			$a = $x / $y;
+			$a = $a * 100;
+			return $a;
+		}else{
+			return 0;
+		}
 	}
 
 

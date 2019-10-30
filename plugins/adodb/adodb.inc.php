@@ -684,7 +684,7 @@ if (!defined('_ADODB_LAYER')) {
 		if ($fn = $this->raiseErrorFn) {
 			$fn($this->databaseType, 'CONNECT', $errno, $err, $this->host, $this->database, $this);
 		}
-
+		$_SESSION['err'] = $err;
 		$this->_connectionID = false;
 		if ($this->debug) {
 			ADOConnection::outp( $this->host.': '.$err);
