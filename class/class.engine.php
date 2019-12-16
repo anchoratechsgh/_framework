@@ -225,11 +225,11 @@ class Engine
 	*@usage Engine::randCode('6','');
 	*/
 	public static function randCode($length='8', $symb=''){
-			$chars = empty($symb)?'qwertyuplkjhgfdsazxcvbnm123456789MNBVCXZASDFGHJKLPIUYTREWQ':'qwertyuplkjhgfdsazxcvbnm123456789@,!%#[{]}=():?MNBVCXZASDFGHJKLPIUYTREWQ';
+		$chars = empty($symb)?'qwertyuplkjhgfdsazxcvbnm123456789MNBVCXZASDFGHJKLPIUYTREWQ':'qwertyuplkjhgfdsazxcvbnm123456789@,!%#[{]}=():?MNBVCXZASDFGHJKLPIUYTREWQ';
 	  	$code  = '';
 	  	for($i = 0; $i < $length; ++$i) {
-				$random = str_shuffle($chars);
-				$code  .= $random[5];
+			$random = str_shuffle($chars);
+			$code  .= $random[5];
 	  	}
 		return $code;
 	}#end
@@ -246,10 +246,10 @@ class Engine
 			$chars = 'qwertyuiopasdfghjklzxcvbnm';
 	  	$code  = '';
 	  	for($i = 0; $i < $length; ++$i) {
-				$random = str_shuffle($chars);
-				$code  .= $random[5];
+			$random = str_shuffle($chars);
+			$code  .= $random[5];
 	  	}
-			return $code;
+		return $code;
 	}#end
 
 
@@ -526,23 +526,24 @@ class Engine
 
 
 	public static function validateNumber($number, $host='GH') {
-		// Clear all symbols
+		// Country codes
+		$validated = ''; $carriers = []; $ccodes = []; $lengths = [];
+		$ccodes['GH'] = '233';
+		$ccodes['NG'] = '234';
+
+		$lengths['GH'] = [3, 9, 10, 11, 12, 13];
+		$lengths['NG'] = [4, 10, 11, 12, 13, 14];
+
+		$carriers['GH'] = ['023','024','054','055','027','057','028','028','020','050','026','056'];
+		$carriers['NG'] = ['0701','0702','07025','07026','07027','07028','07029','0703','0704','0705','0706','0707','0708','0709','0802','0803','0804','0805','0806','0807','0808','0809','0810','0811','0812','0813','0814','0815','0816','0817','0818','0819','0909','0908','0901','0902','0903','0905','0906','0907'];
+
+		// Clear plenty things
 		$number = str_replace(' ', '', $number);
 		if(is_numeric($number) == true){
 			$number = str_replace('~[\!*\'"();.:@&=+$, /?%#\]-]+~', '', $number);
 			$number = preg_replace('/[^\p{L}\p{N}\s]/u', '', $number);
 			$number = preg_replace('/[^0-9]/', '', $number);
 			$number = preg_replace('/^00/', '', $number);
-
-			// Country codes
-			$validated = ''; $carriers = []; $ccodes = []; $lengths = [];
-			$ccodes['GH'] = '233'; $ccodes['NG'] = '234';
-
-			$lengths['GH'] = [3, 9, 10, 11, 12, 13];
-			$lengths['NG'] = [4, 10, 11, 12, 13, 14];
-
-			$carriers['GH'] = ['023','024','054','055','027','057','028','028','020','050','026','056'];
-			$carriers['NG'] = ['0701','0702','07025','07026','07027','07028','07029','0703','0704','0705','0706','0707','0708','0709','0802','0803','0804','0805','0806','0807','0808','0809','0810','0811','0812','0813','0814','0815','0816','0817','0818','0819','0909','0908','0901','0902','0903','0905','0906','0907'];
 
 			if(strlen($number) >= $lengths[$host][1]){
 				if(strlen($number) == $lengths[$host][4]){
