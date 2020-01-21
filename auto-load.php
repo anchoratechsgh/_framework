@@ -83,6 +83,7 @@ require_once dirname(__FILE__).DS.'class'.DS.'class.encryptAES.php';
 
 require_once dirname(__FILE__).DS.'api'.DS.'geoloc'.DS.'geoloc.php';
 
+require_once dirname(__FILE__).DS.'inc'.DS.'class.crontab.php';
 require_once dirname(__FILE__).DS.'inc'.DS.'class.alerts.php';
 require_once dirname(__FILE__).DS.'inc'.DS.'class.exportto.php';
 require_once dirname(__FILE__).DS.'inc'.DS.'class.dates.php';

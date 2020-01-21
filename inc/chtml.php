@@ -200,7 +200,7 @@ final class CHtml
 	public static function requiredList($list=[]) {
 			$empty = [];
 			foreach($list as $var => $val){
-					if(empty($val)) {
+					if(empty($val) == true || $val == '%') {
 							$empty[] = '`'.$var.'`';
 					}
 			}

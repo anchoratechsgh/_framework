@@ -526,6 +526,7 @@ class Engine
 
 
 	public static function validateNumber($number, $host='GH') {
+		$host = strtoupper($host);
 		// Country codes
 		$validated = ''; $carriers = []; $ccodes = []; $lengths = [];
 		$ccodes['GH'] = '233';
@@ -539,7 +540,7 @@ class Engine
 
 		// Clear plenty things
 		$number = str_replace(' ', '', $number);
-		if(is_numeric($number) == true){
+		if(isset($lengths[$host]) == true && is_numeric($number) == true){
 			$number = str_replace('~[\!*\'"();.:@&=+$, /?%#\]-]+~', '', $number);
 			$number = preg_replace('/[^\p{L}\p{N}\s]/u', '', $number);
 			$number = preg_replace('/[^0-9]/', '', $number);
