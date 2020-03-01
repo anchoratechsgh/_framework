@@ -109,13 +109,20 @@ function uploadNoResize($mfile, $destination, $name='', $overwrite=false, $water
 
 
 function social_format($n){
-	$n = (0 + str_replace(',','',$n));
+	$n = (0 + str_replace(',', '', $n));
 	if(!is_numeric($n)) return false;
 	if($n > 1000000000000) return round(($n / 1000000000000),1).' T';
 	else if($n > 1000000000) return round(($n / 1000000000),1).' B';
 	else if($n > 1000000) return round(($n / 1000000),1).' M';
 	else if($n > 1000) return round(($n / 1000),1).' K';
 	return number_format($n);
+}
+
+
+function human_file_size($bytes, $dec = 2){
+	$size = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+	$factor = floor((strlen($bytes) - 1) / 3);
+	return sprintf("%.{$dec}f", $bytes / pow(1024, $factor)) . @$size[$factor];
 }
 
 

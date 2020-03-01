@@ -39,10 +39,27 @@ class Dates {
 	}#end
 
 
-  public static function makeDiffDates($old, $new, $format='a'){
+  public static function makeDiffDates($old, $new, $format='%a Day and %h hours'){
 		// '%y Year; %m Month; %a Day; %h Hours; %i Minute; %s Seconds'
-		$exp = date_diff(date_create($new), date_create($old));
-		return $exp->format('%R%'.$format);
+    $old = new DateTime($old);
+    $new = new DateTime($new);
+    $dif =  $new->diff($old);
+    return $dif->format($format);   
+
+
+		// $exp = date_diff(date_create($new), date_create($old));
+		// return $exp->format('%'.$format);
+	}#end
+
+
+  public static function hoursDiff($old, $new){
+    // '2020-02-02', '2020-01-04'
+		// '%y Year; %m Month; %a Day; %h Hours; %i Minute; %s Seconds'
+    $t1 = strtotime($new);
+    $t2 = strtotime($old);
+    $diff = $t1 - $t2;
+    $hours = ($diff / ( 60 * 60 ));
+    return $hours;
 	}#end
 
 

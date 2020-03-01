@@ -25,19 +25,19 @@ final class CHtml
 				return self::input(self::attr($htmlOptions));
 			break;
 			case 'checkbox':
-				return self::checkbox(self::attr($htmlOptions),$htmlOptions);
+				return self::checkbox(self::attr($htmlOptions), $htmlOptions);
 			break;
 			case 'radio':
-				return self::radio(self::attr($htmlOptions),$htmlOptions);
+				return self::radio(self::attr($htmlOptions), $htmlOptions);
 			break;
 			case 'textarea':
-				return self::textarea(self::attr($htmlOptions));
+				return self::textarea(self::attr($htmlOptions), $htmlOptions);
 			break;
 			case 'select':
-				return self::select(self::attr($htmlOptions),$htmlOptions);
+				return self::select(self::attr($htmlOptions), $htmlOptions);
 			break;
 			case 'button':
-				return self::button(self::attr($htmlOptions),$htmlOptions);
+				return self::button(self::attr($htmlOptions), $htmlOptions);
 			break;
 		endswitch;
 	}#end
@@ -110,8 +110,8 @@ final class CHtml
 			echo '<meta property="og:keywords" content="'.$metaOptions['keywords'].'" />'."\n";
 		}
 		if(array_key_exists('description', $metaOptions)){
-            echo '<meta name="description" content="'.$metaOptions['description'].'" />'."\n";
-            echo '<meta property="og:description" content="'.$metaOptions['description'].'" />'."\n";
+        echo '<meta name="description" content="'.$metaOptions['description'].'" />'."\n";
+        echo '<meta property="og:description" content="'.$metaOptions['description'].'" />'."\n";
 		}
 		if(array_key_exists('url', $metaOptions)){
 			echo '<link rel="canonical" href="'.$metaOptions['url'].'" />'."\n";
