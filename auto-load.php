@@ -24,7 +24,7 @@ define( 'ERROR_FRWK'  ,		FRWK.DS.'_framework'.DS.'error'.DS );
 
 # ERROR HANDLER
 if(defined('ERROR') == TRUE && ERROR == TRUE){
-	@error_reporting( E_ALL );
+	@error_reporting( E_ALL ^ E_DEPRECATED );
 	@ini_set( 'log_errors' , 'Off');
 	@ini_set( 'display_errors', 'On' );
 
@@ -67,7 +67,7 @@ require_once dirname(__FILE__).DS.'plugins'.DS.'barcode'.DS.'barcode.php';
 //require_once dirname(__FILE__).DS.'plugins'.DS.'PHPExcel'.DS.'PHPExcel.php';
 //require_once dirname(__FILE__).DS.'plugins'.DS.'PHPpdf'.DS.'fpdf.php';
 require_once dirname(__FILE__).DS.'plugins'.DS.'mobile_detect'.DS.'Mobile_Detect.php';
-require_once dirname(__FILE__).DS.'plugins'.DS.'getid3'.DS.'getid3.php';
+// require_once dirname(__FILE__).DS.'plugins'.DS.'getid3'.DS.'getid3.php';
 require_once dirname(__FILE__).DS.'plugins'.DS.'libphonenumber'.DS.'PhoneNumberUtil.php';
 require_once dirname(__FILE__).DS.'plugins'.DS.'class_upload'.DS.'class.upload.php';
 
