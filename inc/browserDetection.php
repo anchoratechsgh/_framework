@@ -169,7 +169,6 @@ class BrowserDetection {
      }
 }  
 
- # $obj = new BrowserDetection();
-
- # echo $obj->detect()->getInfo();
+// $obj = new BrowserDetection();
+// echo $obj->detect()->getInfo();die
 
