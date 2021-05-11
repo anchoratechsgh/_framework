@@ -33,12 +33,12 @@ if (extension_loaded('mbstring')) {
 
 function uploadAndResize($mfile, $destination, $name = '', $x = '250', $y = '250', $hex = 'eee', $overwrite = false, $watermark = '', $convert = '')
 {
-    $files = array();
-    $output = array();
+    $files = [];
+    $output = [];
     foreach ($mfile as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files)) {
-                $files[$i] = array();
+                $files[$i] = [];
             }
 
             $files[$i][$k] = $v;
@@ -77,12 +77,12 @@ function uploadAndResize($mfile, $destination, $name = '', $x = '250', $y = '250
 
 function uploadNoResize($mfile, $destination, $name = '', $overwrite = false, $watermark = '', $convert = '')
 {
-    $files = array();
-    $output = array();
+    $files = [];
+    $output = [];
     foreach ($mfile as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files)) {
-                $files[$i] = array();
+                $files[$i] = [];
             }
 
             $files[$i][$k] = $v;
@@ -309,7 +309,7 @@ if (function_exists('array_column') == false) {
                 $paramsIndexKey = (string) $params[2];
             }
         }
-        $resultArray = array();
+        $resultArray = [];
         foreach ($paramsInput as $row) {
             $key = $value = null;
             $keySet = $valueSet = false;
