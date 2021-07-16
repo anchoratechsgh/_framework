@@ -20,10 +20,9 @@ class Fetch
     public function get($url, $params = [])
     {
         $ch = curl_init();
-        $headers = $this->headers;
         $params = http_build_query($params);
         curl_setopt($ch, CURLOPT_URL, $url . '?' . $params);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
@@ -35,12 +34,11 @@ class Fetch
     public function post($url, $params = [])
     {
         $ch = curl_init();
-        $headers = $this->headers;
-        $params = $params;
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
         curl_close($ch);
@@ -50,10 +48,8 @@ class Fetch
     public function put($url, $params = [])
     {
         $ch = curl_init();
-        $headers = $this->headers;
-        $params = $params;
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
@@ -66,10 +62,8 @@ class Fetch
     public function delete($url, $params = [])
     {
         $ch = curl_init();
-        $headers = $this->headers;
-        $params = $params;
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
@@ -82,11 +76,13 @@ class Fetch
     private function result($result)
     {
         switch ($this->output) {
-
             default:
-                return json_decode($result, true);
+                return $result;
                 break;
 
+            case 'json':
+                return json_decode($result, 1);
+                break;
         }
     }
 
