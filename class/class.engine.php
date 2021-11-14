@@ -481,12 +481,16 @@ class Engine
 
     public static function get_user_ip_address()
     {
-        foreach (array('HTTHM_CF_CONNECTING_IP', 'HTTHM_CLIENT_IP', 'HTTHM_X_FORWARDED_FOR', 'HTTHM_X_FORWARDED', 'HTTHM_X_CLUSTER_CLIENT_IP', 'HTTHM_FORWARDED_FOR', 'HTTHM_FORWARDED', 'REMOTE_ADDR') as $key) {
-            if (array_key_exists($key, $_SERVER) == true) {
-                foreach (explode(',', $_SERVER[$key]) as $ip) {
-                    $userIP = trim($ip);
-                    if (filter_var($userIP, FILTER_VALIDATE_IP) !== false) {
-                        return $userIP;
+        if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            return $_SERVER['HTTP_CF_CONNECTING_IP'];
+        } else {
+            foreach (array('HTTHM_CF_CONNECTING_IP', 'HTTHM_CLIENT_IP', 'HTTHM_X_FORWARDED_FOR', 'HTTHM_X_FORWARDED', 'HTTHM_X_CLUSTER_CLIENT_IP', 'HTTHM_FORWARDED_FOR', 'HTTHM_FORWARDED', 'REMOTE_ADDR') as $key) {
+                if (array_key_exists($key, $_SERVER) == true) {
+                    foreach (explode(',', $_SERVER[$key]) as $ip) {
+                        $userIP = trim($ip);
+                        if (filter_var($userIP, FILTER_VALIDATE_IP) !== false) {
+                            return $userIP;
+                        }
                     }
                 }
             }
