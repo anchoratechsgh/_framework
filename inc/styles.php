@@ -3,8 +3,8 @@
 :focus {
     outline: 0px !important;
 }
-label.required:after {
-	content: ' *' !important;
+label.required:before {
+	content: '* ' !important;
 	color: red !important;
 }
 .adf:before {
