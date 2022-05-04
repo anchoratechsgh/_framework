@@ -93,7 +93,7 @@ function uploadNoResize($mfile, $destination, $name = '', $overwrite = false, $w
         if ($foo->uploaded) {
             $foo->file_overwrite = $overwrite;
             if (empty($name) == false):
-                $foo->file_new_name_body = $name . '---' . $file['name'];
+                $foo->file_new_name_body = $name;
             endif;
             if (empty($convert) == false):
                 $foo->image_convert = $convert;
