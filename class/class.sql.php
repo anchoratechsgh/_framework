@@ -71,7 +71,7 @@ final class SQL
             $fields = implode(',', $fields);
             $params = implode(',', $params);
             $query = 'INSERT INTO `' . $table . '` (' . $fields . ') VALUES (' . $params . ')';
-            //echo($query).'<br/>'; die();
+            // echo($query).'<br/>'; die();
             return $sql->Execute($sql->Prepare($query), $values);
         }
     } #end
