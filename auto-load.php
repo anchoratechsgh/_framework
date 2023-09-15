@@ -11,7 +11,7 @@ ini_set('upload_max_filesize', '1240M');
 ini_set('post_max_size', '1240M');
 ini_set('max_execution_time', 1240);
 
-if (defined('FRWK') == false):
+if (defined('FRWK') === false):
     define('FRWK', $_SERVER['DOCUMENT_ROOT']);
 endif;
 
@@ -20,7 +20,7 @@ if (defined('ERROR_LOG') == false) {
     define('ERROR_LOG', ROOT . DS . '_logs' . DS . 'error.log');
 }
 define('BACKUP_FILE', ROOT . DS . '_logs' . DS . 'backup.file');
-define('ERROR_FRWK', FRWK . DS . '_framework' . DS . 'error' . DS);
+define('ERROR_FRWK', FRWK . '_framework' . DS . 'error' . DS);
 
 # ERROR HANDLER
 if (defined('ERROR') == true && ERROR == true) {
